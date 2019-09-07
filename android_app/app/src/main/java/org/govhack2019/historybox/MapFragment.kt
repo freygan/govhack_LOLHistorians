@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.maps.CameraUpdateFactory.newLatLngBounds
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.MarkerManager
 import kotlinx.android.synthetic.main.fragment_map.map_view
 import timber.log.Timber
@@ -27,6 +29,15 @@ class MapFragment : Fragment() {
     private lateinit var markerManager: MarkerManager
 
     private lateinit var markers: MarkerManager.Collection
+
+    private lateinit var viewModel: SharedViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = activity?.run {
+            ViewModelProviders.of(this)[SharedViewModel::class.java]
+        } ?: throw Exception("Invalid Activity")
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -61,6 +72,7 @@ class MapFragment : Fragment() {
             setOnMarkerClickListener { marker -> onMarkerClick(marker = marker) }
             setOnInfoWindowClickListener { marker -> onInfoWindowClick(marker = marker) }
         }
+        loadMarkers()
     }
 
     private fun onMapLoaded() {
@@ -71,6 +83,20 @@ class MapFragment : Fragment() {
     private fun onCameraIdle() {
         Timber.d("onCameraIdle")
         mapArea = map.projection.visibleRegion.latLngBounds
+    }
+
+    private fun loadMarkers() {
+        Timber.d("loadMarkers")
+        viewModel.locations()
+            .forEach { loc: Location ->
+                val options = MarkerOptions().run {
+                    title(loc.name)
+                    position(LatLng(loc.latitude, loc.longitude))
+//                    snippet(loc.keywords)
+                }
+                val marker = markers.addMarker(options)
+                marker.tag = loc.id
+            }
     }
 
     private fun onMarkerClick(marker: Marker?): Boolean {
