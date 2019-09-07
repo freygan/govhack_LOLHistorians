@@ -2,12 +2,13 @@ package org.govhack2019.historybox
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.CameraUpdateFactory.newLatLngBounds
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.Marker
 import com.google.maps.android.MarkerManager
@@ -21,7 +22,7 @@ class MapFragment : Fragment() {
 
     private lateinit var map: GoogleMap
 
-    private lateinit var mapArea: LatLngBounds
+    private var mapArea: LatLngBounds = LatLngBounds(LatLng(-43.75, 144.5), LatLng(-39.65, 148.6))
 
     private lateinit var markerManager: MarkerManager
 
@@ -29,25 +30,27 @@ class MapFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
+        Timber.d("onCreateView")
         return inflater.inflate(R.layout.fragment_map, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Timber.d("onViewCreated")
         super.onViewCreated(view, savedInstanceState)
         map_view.onCreate(savedInstanceState)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+        Timber.d("onActivityCreated")
         super.onActivityCreated(savedInstanceState)
-        map_view.getMapAsync {
-
-        }
+        map_view.getMapAsync { googleMap -> onMapReady(googleMap = googleMap) }
     }
+
     private fun onMapReady(googleMap: GoogleMap) {
+        Timber.d("onMapReady")
         map = googleMap
-//        markerManager = MarkerManager(googleMap)
-//        markers = markerManager.newCollection()
+        markerManager = MarkerManager(googleMap)
+        markers = markerManager.newCollection()
         map.apply {
             setOnMapLoadedCallback { onMapLoaded() }
             setOnCameraIdleListener { onCameraIdle() }
@@ -58,39 +61,27 @@ class MapFragment : Fragment() {
             setOnMarkerClickListener { marker -> onMarkerClick(marker = marker) }
             setOnInfoWindowClickListener { marker -> onInfoWindowClick(marker = marker) }
         }
-        map.moveCamera(newLatLngBounds(mapArea, resources.getDimensionPixelSize(R.dimen.map_padding)))
     }
 
     private fun onMapLoaded() {
         Timber.d("onMapLoaded")
-//        viewModel.observableViewState().observe(this, Observer { it -> render(viewState = it) })
+        map.moveCamera(newLatLngBounds(mapArea, resources.getDimensionPixelSize(R.dimen.map_padding)))
     }
 
     private fun onCameraIdle() {
         Timber.d("onCameraIdle")
-//        viewModel.onIntent(intent = SearchIntent.SetMapArea(bounds = map.projection.visibleRegion.latLngBounds))
+        mapArea = map.projection.visibleRegion.latLngBounds
     }
 
     private fun onMarkerClick(marker: Marker?): Boolean {
         Timber.d("onMarkerClick")
-        marker?.also {
-//            val drop = displayedDrops[it.tag]
-//            analytics.logEvent(event = "marker_click", key = "drop_id", value = drop?.id?.value ?: "null")
-//            drop?.also { }
-        }
+        marker?.also {}
         return false
     }
 
     private fun onInfoWindowClick(marker: Marker?) {
         Timber.d("onInfoWindowClick")
-        marker?.also {
-//            val drop = displayedDrops[it.tag]
-//            analytics.logEvent(event = "info_window_click", key = "drop_id", value = drop?.id?.value ?: "null")
-//            drop?.also {
-//                val navDirections = actionSearchMapFragmentToDropDetailsFragment(it.id.value)
-//                Navigation.findNavController(map_view).navigate(navDirections)
-//            }
-        }
+        marker?.also {}
     }
 
     // NOTE: Calling lifecycle methods manually to get the map_view lifecycle events called
