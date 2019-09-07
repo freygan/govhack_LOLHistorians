@@ -1,4 +1,4 @@
-package com.example.lolhistory
+package org.govhack2019.historybox
 
 import org.junit.Test
 

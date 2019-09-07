@@ -1,4 +1,4 @@
-package com.example.lolhistory
+package org.govhack2019.historybox
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
