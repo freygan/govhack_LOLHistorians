@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="org.govhack2019.historybox.MapFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/map_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_map_fragment" />
+        android:layout_marginStart="@dimen/map_padding"
+        android:layout_marginTop="@dimen/map_padding"
+        android:layout_marginEnd="@dimen/map_padding"
+        android:layout_marginBottom="@dimen/map_padding"
+        map:cameraBearing="0.0"
+        map:cameraTargetLat="-41.679"
+        map:cameraTargetLng="146.55"
+        map:cameraTilt="0.0"
+        map:cameraZoom="6.88"
+        map:uiCompass="false"
+        map:uiRotateGestures="false"
+        map:uiTiltGestures="false"
+        map:uiZoomControls="true" />
 
 </FrameLayout>
