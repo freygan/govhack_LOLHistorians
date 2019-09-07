@@ -134,7 +134,7 @@ class MapFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        map_view.onDestroy()
+//        map_view.onDestroy()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
