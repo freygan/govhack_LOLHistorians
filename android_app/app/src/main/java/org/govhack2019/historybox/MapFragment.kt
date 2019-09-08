@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import com.google.android.gms.maps.CameraUpdateFactory.newLatLngBounds
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
@@ -15,6 +16,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.MarkerManager
 import kotlinx.android.synthetic.main.fragment_map.map_view
+import org.govhack2019.historybox.MapFragmentDirections.actionMapFragmentToLocationFragment
 import timber.log.Timber
 
 /**
@@ -107,7 +109,12 @@ class MapFragment : Fragment() {
 
     private fun onInfoWindowClick(marker: Marker?) {
         Timber.d("onInfoWindowClick")
-        marker?.also {}
+        marker?.also {
+            val id = it.tag.toString().toLong()
+            val navDirections = actionMapFragmentToLocationFragment()
+            navDirections.id = id
+            Navigation.findNavController(map_view).navigate(navDirections)
+        }
     }
 
     // NOTE: Calling lifecycle methods manually to get the map_view lifecycle events called
