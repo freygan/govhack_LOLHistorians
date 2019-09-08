@@ -9,6 +9,7 @@ object Repository {
 
     init {
         loadLocations()
+        loadImageUrls()
     }
 
     fun locations(): List<Location> = locations
