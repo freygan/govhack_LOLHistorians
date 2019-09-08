@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import com.google.android.gms.maps.CameraUpdateFactory.newLatLngBounds
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
@@ -15,6 +16,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.MarkerManager
 import kotlinx.android.synthetic.main.fragment_map.map_view
+import org.govhack2019.historybox.MapFragmentDirections.Companion.actionMapFragmentToLocationFragment
 import timber.log.Timber
 
 /**
@@ -24,8 +26,9 @@ class MapFragment : Fragment() {
 
     private lateinit var map: GoogleMap
 
-    private var mapArea: LatLngBounds = LatLngBounds(LatLng(-43.75, 144.5), LatLng(-39.65, 148.6))
-
+//    private var mapArea: LatLngBounds = LatLngBounds(LatLng(-43.75, 144.5), LatLng(-39.65, 148.6))
+    private val defaultMapArea: LatLngBounds = LatLngBounds(LatLng(-41.460828, 147.097281), LatLng(-41.430178, 147.138681))
+    private var mapArea: LatLngBounds = defaultMapArea
     private lateinit var markerManager: MarkerManager
 
     private lateinit var markers: MarkerManager.Collection
@@ -77,7 +80,7 @@ class MapFragment : Fragment() {
 
     private fun onMapLoaded() {
         Timber.d("onMapLoaded")
-        map.moveCamera(newLatLngBounds(mapArea, resources.getDimensionPixelSize(R.dimen.map_padding)))
+        map.moveCamera(newLatLngBounds(defaultMapArea, resources.getDimensionPixelSize(R.dimen.map_padding)))
     }
 
     private fun onCameraIdle() {
@@ -107,7 +110,11 @@ class MapFragment : Fragment() {
 
     private fun onInfoWindowClick(marker: Marker?) {
         Timber.d("onInfoWindowClick")
-        marker?.also {}
+        marker?.also {
+            val id = it.tag.toString().toLong()
+            val navDirections = actionMapFragmentToLocationFragment(id)
+            Navigation.findNavController(map_view).navigate(navDirections)
+        }
     }
 
     // NOTE: Calling lifecycle methods manually to get the map_view lifecycle events called
@@ -134,12 +141,12 @@ class MapFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        map_view.onDestroy()
+//        map_view.onDestroy()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        map_view.onSaveInstanceState(outState)
+//        map_view.onSaveInstanceState(outState)
     }
 
     override fun onLowMemory() {
