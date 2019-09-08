@@ -2,7 +2,5 @@
     <string name="app_name">History Box</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_map_fragment">Hello Map fragment</string>
-    <string name="hello_details_fragment">Hello Details fragment</string>
     <string name="hello_upload_fragment">Hello Upload fragment</string>
 </resources>
