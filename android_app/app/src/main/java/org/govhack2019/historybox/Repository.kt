@@ -14,7 +14,7 @@ object Repository {
 
     fun locations(): List<Location> = locations
 
-    fun images(id: Long): List<String> {
+    fun imageUrls(id: Long): List<String> {
         val result = ArrayList<String>()
         imageUrls.filter { it.first == id }
             .forEach { result.add(it.second) }
