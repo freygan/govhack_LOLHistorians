@@ -23,6 +23,7 @@ class LocationFragment : Fragment() {
     private var id: Long = -1
     private lateinit var location: Location
     private var imageUrls: List<String> = listOf()
+    private var videoData: List<VideoData> = listOf()
 
     private var photosAdapter: PhotosAdapter? = null
     private var videosAdapter: VideosAdapter? = null
@@ -46,7 +47,8 @@ class LocationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         id = args.id
         location = viewModel.locations().first { it.id == id }
-        imageUrls = viewModel.imageUrls(id = id)
+        imageUrls = viewModel.imageUrls(id = id).map { it -> it.photoUrl }
+        videoData = viewModel.videoData(id = id)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -67,7 +69,7 @@ class LocationFragment : Fragment() {
         videosLayoutManager.orientation = RecyclerView.HORIZONTAL
         videosRecyclerView.layoutManager = videosLayoutManager
 
-        videosAdapter = VideosAdapter(items = imageUrls)
+        videosAdapter = VideosAdapter(items = videoData)
         videosRecyclerView.adapter = videosAdapter
     }
 }

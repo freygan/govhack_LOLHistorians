@@ -5,20 +5,23 @@ import java.util.regex.Pattern
 object Repository {
 
     private val locations: ArrayList<Location> = ArrayList()
-    private val imageUrls: ArrayList<Pair<Long, String>> = ArrayList()
+    private val imageUrls: ArrayList<PhotoData> = ArrayList()
+    private val videoUrls: ArrayList<VideoData> = ArrayList()
 
     init {
         loadLocations()
         loadImageUrls()
+        loadVideoUrls()
     }
 
     fun locations(): List<Location> = locations
 
-    fun imageUrls(id: Long): List<String> {
-        val result = ArrayList<String>()
-        imageUrls.filter { it.first == id }
-            .forEach { result.add(it.second) }
-        return result
+    fun imageUrls(id: Long): List<PhotoData> {
+        return imageUrls.filter { it.id == id }
+    }
+
+    fun videoData(id: Long): List<VideoData> {
+        return videoUrls.filter { it.id == id }
     }
 
     private fun loadLocations() {
@@ -43,7 +46,20 @@ object Repository {
             .split(Pattern.compile("\n"))
             .forEach { it ->
                 val values = it.split(Pattern.compile(","))
-                imageUrls.add(Pair(values[0].toLong(), values[1]))
+                imageUrls.add(PhotoData(id = values[0].toLong(), photoUrl = values[1]))
+            }
+    }
+
+    private fun loadVideoUrls() {
+        OfflineData.videoUrls
+            .split(Pattern.compile("\n"))
+            .forEach { it ->
+                val values = it.split(Pattern.compile(","))
+                videoUrls.add(VideoData(
+                    id = values[0].toLong(),
+                    thumbnailUrl = values[1],
+                    videoUrl = values[2]
+                ))
             }
     }
 }
