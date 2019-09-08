@@ -16,7 +16,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.MarkerManager
 import kotlinx.android.synthetic.main.fragment_map.map_view
-import org.govhack2019.historybox.MapFragmentDirections.actionMapFragmentToLocationFragment
+import org.govhack2019.historybox.MapFragmentDirections.Companion.actionMapFragmentToLocationFragment
 import timber.log.Timber
 
 /**
@@ -111,8 +111,7 @@ class MapFragment : Fragment() {
         Timber.d("onInfoWindowClick")
         marker?.also {
             val id = it.tag.toString().toLong()
-            val navDirections = actionMapFragmentToLocationFragment()
-            navDirections.id = id
+            val navDirections = actionMapFragmentToLocationFragment(id)
             Navigation.findNavController(map_view).navigate(navDirections)
         }
     }
