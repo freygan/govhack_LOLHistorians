@@ -55,7 +55,11 @@ object Repository {
             .split(Pattern.compile("\n"))
             .forEach { it ->
                 val values = it.split(Pattern.compile(","))
-                videoUrls.add(VideoData(id = values[0].toLong(), thumbnailUrl = values[1], videoUrl = values[2]))
+                videoUrls.add(VideoData(
+                    id = values[0].toLong(),
+                    thumbnailUrl = values[1],
+                    videoUrl = values[2]
+                ))
             }
     }
 }
