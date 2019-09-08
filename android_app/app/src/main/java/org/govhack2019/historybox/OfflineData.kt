@@ -2,6 +2,8 @@ package org.govhack2019.historybox
 
 object OfflineData {
 
+    // Temporary data, will eventually be replaced with online data
+
     val locations = """1,City Park Monkey Enclosure,-41.433277,147.142251,launceston monkey city park
 2,James Boags,-41.432573,147.138516,launceston brewery -cascade
 3,Launceston Town Hall,-41.435558,147.13738,launceston town hall
@@ -23,9 +25,18 @@ object OfflineData {
 19,The Royal Oak,-41.43452,147.142441,"launceston, "
 """.trimMargin()
 
-    val imageUrls = """1,https://placekitten.com/200/300
-1,https://placekitten.com/200/300
-3,https://placekitten.com/200/300
-4,https://placekitten.com/200/300
+    // id, image url
+    val imageUrls = """1,https://placekitten.com/160/100
+1,https://placekitten.com/160/100
+3,https://placekitten.com/160/100
+4,https://placekitten.com/160/100
 """.trimMargin()
+
+    // id, thumbnail url, video url
+    val videoUrls = """1,https://placekitten.com/160/100,
+1,https://placekitten.com/160/100,
+3,https://placekitten.com/160/100,
+4,https://placekitten.com/160/100,
+""".trimMargin()
+
 }

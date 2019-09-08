@@ -26,8 +26,9 @@ class MapFragment : Fragment() {
 
     private lateinit var map: GoogleMap
 
-    private var mapArea: LatLngBounds = LatLngBounds(LatLng(-43.75, 144.5), LatLng(-39.65, 148.6))
-
+//    private var mapArea: LatLngBounds = LatLngBounds(LatLng(-43.75, 144.5), LatLng(-39.65, 148.6))
+    private val defaultMapArea: LatLngBounds = LatLngBounds(LatLng(-41.460828, 147.097281), LatLng(-41.430178, 147.138681))
+    private var mapArea: LatLngBounds = defaultMapArea
     private lateinit var markerManager: MarkerManager
 
     private lateinit var markers: MarkerManager.Collection
@@ -79,7 +80,7 @@ class MapFragment : Fragment() {
 
     private fun onMapLoaded() {
         Timber.d("onMapLoaded")
-        map.moveCamera(newLatLngBounds(mapArea, resources.getDimensionPixelSize(R.dimen.map_padding)))
+        map.moveCamera(newLatLngBounds(defaultMapArea, resources.getDimensionPixelSize(R.dimen.map_padding)))
     }
 
     private fun onCameraIdle() {
@@ -145,7 +146,7 @@ class MapFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        map_view.onSaveInstanceState(outState)
+//        map_view.onSaveInstanceState(outState)
     }
 
     override fun onLowMemory() {
