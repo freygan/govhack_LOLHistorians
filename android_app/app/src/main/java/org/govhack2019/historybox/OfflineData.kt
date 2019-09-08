@@ -26,10 +26,13 @@ object OfflineData {
 """.trimMargin()
 
     // id, image url
-    val imageUrls = """1,https://github.com/freygan/govhack_LOLHistorians/blob/master/images%20for%20filming/AB713-1-5759.jpg
-1,https://placekitten.com/160/100
-2,https://github.com/freygan/govhack_LOLHistorians/blob/master/images%20for%20filming/8bf1c7ab4b4c474e90b2d7c19d91b12a_m.jpg
-4,https://placekitten.com/160/100
+    val imageUrls = """1,https://raw.githubusercontent.com/freygan/govhack_LOLHistorians/master/images%20for%20filming/AB713-1-5759.jpg
+3,https://raw.githubusercontent.com/freygan/govhack_LOLHistorians/master/images%20for%20filming/AB713-1-4336.jpg
+2,https://raw.githubusercontent.com/freygan/govhack_LOLHistorians/master/images%20for%20filming/8bf1c7ab4b4c474e90b2d7c19d91b12a_m.jpg
+3,https://raw.githubusercontent.com/freygan/govhack_LOLHistorians/master/images%20for%20filming/LPIC147-2-69.jpg
+3,https://raw.githubusercontent.com/freygan/govhack_LOLHistorians/master/images%20for%20filming/LPIC22-1-21.jpg
+5,https://raw.githubusercontent.com/freygan/govhack_LOLHistorians/master/images%20for%20filming/LPIC33-4-74.jpg
+5,https://raw.githubusercontent.com/freygan/govhack_LOLHistorians/master/images%20for%20filming/LPIC33-4-75.jpg
 """.trimMargin()
 
     // id, thumbnail url, video url
