@@ -20,9 +20,9 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="org.govhack2019.historybox.DetailFragment"
+        android:name="org.govhack2019.historybox.LocationFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" >
+        tools:layout="@layout/fragment_location" >
         <action
             android:id="@+id/action_detailFragment_to_uploadFragment"
             app:destination="@id/uploadFragment" />
