@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class VideosAdapter(var items: List<String>): RecyclerView.Adapter<VideosViewHolder>() {
+class VideosAdapter(var items: List<VideoData>): RecyclerView.Adapter<VideosViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideosViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -17,6 +17,6 @@ class VideosAdapter(var items: List<String>): RecyclerView.Adapter<VideosViewHol
     }
 
     override fun onBindViewHolder(holder: VideosViewHolder, position: Int) {
-        holder.bindToUrl(items[position])
+        holder.bindToUrl(items[position].thumbnailUrl)
     }
 }
