@@ -37,11 +37,10 @@ object OfflineData {
 
     // id, thumbnail url, video url
     // Currently unused
-    val videoUrls = """1,https://placekitten.com/160/100,https://youtu.be/QZpkrkcMi2g
-1,https://placekitten.com/160/100,https://youtu.be/Im2v97Udz88?t=660 
-5,https://placekitten.com/160/100,https://youtu.be/Im2v97Udz88?t=117 
-3,https://placekitten.com/160/100,https://youtu.be/Im2v97Udz88?t=95 
-4,https://placekitten.com/160/100,https://placekitten.com/160/100
+    val videoUrls = """1,http://i3.ytimg.com/vi/QZpkrkcMi2g/hqdefault.jpg,https://youtu.be/QZpkrkcMi2g
+1,http://i3.ytimg.com/vi/Im2v97Udz88/hqdefault.jpg,https://youtu.be/Im2v97Udz88?t=660 
+3,http://i3.ytimg.com/vi/Im2v97Udz88/hqdefault.jpg,https://youtu.be/Im2v97Udz88?t=95 
+5,http://i3.ytimg.com/vi/Im2v97Udz88/hqdefault.jpg,https://youtu.be/Im2v97Udz88?t=117 
 """.trimMargin()
 
 }
