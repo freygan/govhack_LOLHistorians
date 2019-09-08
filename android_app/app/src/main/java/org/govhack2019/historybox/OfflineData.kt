@@ -33,10 +33,11 @@ object OfflineData {
 """.trimMargin()
 
     // id, thumbnail url, video url
-    val videoUrls = """1,https://placekitten.com/160/100,
-1,https://placekitten.com/160/100,
-3,https://placekitten.com/160/100,
-4,https://placekitten.com/160/100,
+    // Currently unused
+    val videoUrls = """1,https://placekitten.com/160/100,https://placekitten.com/160/100
+1,https://placekitten.com/160/100,https://placekitten.com/160/100
+3,https://placekitten.com/160/100,https://placekitten.com/160/100
+4,https://placekitten.com/160/100,https://placekitten.com/160/100
 """.trimMargin()
 
 }
