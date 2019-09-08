@@ -26,9 +26,9 @@ object OfflineData {
 """.trimMargin()
 
     // id, image url
-    val imageUrls = """1,https://placekitten.com/160/100
+    val imageUrls = """1,https://github.com/freygan/govhack_LOLHistorians/blob/master/images%20for%20filming/AB713-1-5759.jpg
 1,https://placekitten.com/160/100
-3,https://placekitten.com/160/100
+2,https://github.com/freygan/govhack_LOLHistorians/blob/master/images%20for%20filming/8bf1c7ab4b4c474e90b2d7c19d91b12a_m.jpg
 4,https://placekitten.com/160/100
 """.trimMargin()
 
